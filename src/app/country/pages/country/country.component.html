@@ -2,23 +2,45 @@
 <hr>
 
 <div class="row">
-
     <div class="col">
-        <app-country-input></app-country-input>
+        <app-country-input 
+            placeholder="Search country..."
+            (onEnter)="search( $event )"
+            (onDebounce)="suggestions( $event )"></app-country-input>
     </div>
-
 </div>
+
+<ul class="list-group" *ngIf="showSuggestion">
+    <li 
+        *ngFor="let country of suggestionCountries"
+        class="list-group-item list-group-item-action">
+        <a 
+            [routerLink]="['/country', country.alpha2Code]"
+            class="nav-link">
+            {{ country.name }}
+        </a>
+    </li>
+    <li 
+        *ngFor="let country of suggestionCountries"
+        class="list-group-item list-group-item-action"
+        (click)="search( country.name )">
+        <a 
+            class="nav-link">
+            Buscar "{{ country.name }}"
+        </a>
+    </li>
+</ul>
 
 <hr>
 
-<div class="aler alert-danger">
-    No results were from with the term <strong>asdasdas</strong>
+<div class="alert alert-danger" *ngIf="error; else showTable">
+    No results were found with the term <strong> {{ term }} </strong>
 </div>
 
-<div class="row">
-
-    <div class="col">
-        <app-country-table></app-country-table>
+<ng-template #showTable>
+    <div class="row" *ngIf="countries.length > 0">
+        <div class="col">
+            <app-country-table [countries]="countries"></app-country-table>
+        </div>
     </div>
-    
-</div>
+</ng-template>

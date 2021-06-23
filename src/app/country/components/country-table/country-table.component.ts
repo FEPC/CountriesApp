@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CountryService } from '../../services/country.service';
+import { SearchCountries } from '../../interfaces/country.interface';
 
 @Component({
   selector: 'app-country-table',
   templateUrl: './country-table.component.html',
-  styles: [
-  ]
 })
-export class CountryTableComponent implements OnInit {
+export class CountryTableComponent {
 
-  constructor() { }
+  @Input() countries: SearchCountries[] = [];
 
-  ngOnInit(): void {
-  }
+  /*constructor(
+    private countryService: CountryService
+  ){}*/
 
 }

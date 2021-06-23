@@ -1,1 +1,37 @@
-<p>capital works!</p>
+<h2>Capital</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <app-country-input 
+            placeholder="Search capital..."
+            (onEnter)="search( $event )"
+            (onDebounce)="suggestions( $event )"></app-country-input>
+    </div>
+</div>
+
+<ul class="list-group" *ngIf="showSuggestion">
+    <li 
+        *ngFor="let country of suggestionCapitals"
+        class="list-group-item list-group-item-action"
+        (click)="search( country.capital )">
+        <a 
+            class="nav-link">
+            Buscar "{{ country.capital }}"
+        </a>
+    </li>
+</ul>
+
+<hr>
+
+<div class="alert alert-danger" *ngIf="error; else showTable">
+    No results were found with the term <strong> {{ termC }} </strong>
+</div>
+
+<ng-template #showTable>
+    <div class="row" *ngIf="countries.length > 0">
+        <div class="col">
+            <app-country-table [countries]="countries"></app-country-table>
+        </div>
+    </div>
+</ng-template>

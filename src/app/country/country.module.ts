@@ -7,8 +7,8 @@ import { CountryInputComponent } from './components/country-input/country-input.
 import { CountryTableComponent } from './components/country-table/country-table.component';
 import { RegionComponent } from './pages/region/region.component';
 import { ViewCountryComponent } from './pages/view-country/view-country.component';
-
-
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { ViewCountryComponent } from './pages/view-country/view-country.componen
     CountryInputComponent,
     CountryTableComponent,
     RegionComponent,
-    ViewCountryComponent
+    ViewCountryComponent,
     
   ],
   exports: [
@@ -27,7 +27,9 @@ import { ViewCountryComponent } from './pages/view-country/view-country.componen
     ViewCountryComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    RouterModule
   ]
 })
 export class CountryModule { }

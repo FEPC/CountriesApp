@@ -1,1 +1,12 @@
-<p>country-input works!</p>
+<!--h5>Search:</h5>
+<input class="form-control" type="text" placeholder="Search country..." (keyup.enter)="search()" #txtCountry-->
+<form (ngSubmit)="search()" autocomplete="off">
+
+    <input class="form-control" 
+            type="text" 
+            name="term" 
+            [(ngModel)]="term" 
+            (input) = "keyUp()"
+            [placeholder]="placeholder">
+
+</form>
